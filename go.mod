@@ -1,4 +1,4 @@
-module myclui
+module github.com/noroot777/clui
 
 go 1.14
 
