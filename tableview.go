@@ -2,6 +2,7 @@ package clui
 
 import (
 	"fmt"
+
 	term "github.com/nsf/termbox-go"
 )
 
@@ -68,6 +69,9 @@ type TableView struct {
 	// in case of current cell is unchanged
 	lastEventCol int
 	lastEventRow int
+
+	// show scroll bar or not
+	showScroll bool
 }
 
 // Column is a information about a table column.
@@ -376,7 +380,9 @@ func (l *TableView) Draw() {
 	SetBackColor(bg)
 	FillRect(x, y+2, w, h-2, ' ')
 	l.drawHeader()
-	l.drawScroll()
+	if l.showScroll {
+		l.drawScroll()
+	}
 	l.drawCells()
 }
 
@@ -880,6 +886,16 @@ func (l *TableView) ShowRowNumber() bool {
 // column of the table that displays the row number
 func (l *TableView) SetShowRowNumber(show bool) {
 	l.showRowNo = show
+}
+
+// SetShowScroll show and not-show scroll bar
+func (l *TableView) SetShowScroll(show bool) {
+	l.showScroll = show
+}
+
+// ShowScroll return true if show scroll bar, else false
+func (l *TableView) ShowScroll() bool {
+	return l.showScroll
 }
 
 // Columns returns the current list of table columns

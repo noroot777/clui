@@ -2,10 +2,11 @@ package clui
 
 import (
 	"bufio"
-	xs "github.com/huandu/xstrings"
-	term "github.com/nsf/termbox-go"
 	"os"
 	"strings"
+
+	xs "github.com/huandu/xstrings"
+	term "github.com/nsf/termbox-go"
 )
 
 /*
@@ -34,6 +35,9 @@ type TextView struct {
 	virtualWidth  int
 	autoscroll    bool
 	maxLines      int
+
+	// show scroll bar or not
+	showScroll bool
 }
 
 /*
@@ -189,7 +193,9 @@ func (l *TextView) Draw() {
 	SetBackColor(bg)
 	FillRect(x, y, w, h, ' ')
 	l.drawText()
-	l.drawScrolls()
+	if l.showScroll {
+		l.drawScrolls()
+	}
 }
 
 func (l *TextView) home() {
@@ -461,6 +467,16 @@ func (l *TextView) SetWordWrap(wrap bool) {
 		l.recalculateTopLine()
 		l.Draw()
 	}
+}
+
+// SetShowScroll show and not-show scroll bar
+func (l *TextView) SetShowScroll(show bool) {
+	l.showScroll = show
+}
+
+// ShowScroll return true if show scroll bar, else false
+func (l *TextView) ShowScroll() bool {
+	return l.showScroll
 }
 
 // LoadFile loads a text from file and replace the control
