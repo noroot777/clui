@@ -4,7 +4,8 @@ package clui
 // set of Radio buttons: at a time no more than one radio
 // button from a group can be selected
 type RadioGroup struct {
-	items []*Radio
+	items        []*Radio
+	onSelectItem func(selectedRadio *Radio)
 }
 
 // CreateRadioGroup creates a new RadioGroup
@@ -70,4 +71,9 @@ func (c *RadioGroup) SetSelected(id int) bool {
 func (c *RadioGroup) AddItem(r *Radio) {
 	c.items = append(c.items, r)
 	r.SetGroup(c)
+}
+
+// OnSelectItem add a handler when child iter selected
+func (c *RadioGroup) OnSelectItem(fn func(selectedRadio *Radio)) {
+	c.onSelectItem = fn
 }

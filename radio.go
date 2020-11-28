@@ -113,6 +113,7 @@ func (c *Radio) ProcessEvent(event Event) bool {
 			c.SetSelected(true)
 		} else {
 			c.group.SelectItem(c)
+			c.group.onSelectItem(c)
 		}
 		return true
 	}

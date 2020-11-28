@@ -170,6 +170,37 @@ func CreateTableView(parent Control, width, height int, scale int) *TableView {
 	return l
 }
 
+// NewTableView create a tableview without parent
+func NewTableView(width, height int, scale int) *TableView {
+	l := new(TableView)
+	l.BaseControl = NewBaseControl()
+
+	if height == AutoSize {
+		height = 3
+	}
+	if width == AutoSize {
+		width = 10
+	}
+
+	l.SetSize(width, height)
+	l.SetConstraints(width, height)
+	l.selectedCol = 0
+	l.selectedRow = 0
+	l.columns = make([]Column, 0)
+	l.SetScale(scale)
+
+	l.SetTabStop(true)
+
+	l.onDrawCell = nil
+	l.onAction = nil
+	l.onKeyPress = nil
+	l.onSelectCell = nil
+	l.lastEventCol = -1
+	l.lastEventRow = -1
+
+	return l
+}
+
 func (l *TableView) drawHeader() {
 	PushAttributes()
 	defer PopAttributes()
