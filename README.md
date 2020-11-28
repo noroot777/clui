@@ -3,6 +3,10 @@ Add some implements personally.
 
 
 ## Changes
-* Tableview (Add methods: SetShowScroll, ShowScroll. Control show the scroll bar or not.)
-* TextView (Add methods: SetShowScroll, ShowScroll. Control show the scroll bar or not.)
-
+#### Tableview
+* SetShowScroll, ShowScroll: control show the scroll bar or not
+* NewTableView: create a tableview without parent
+#### TextView
+* SetShowScroll, ShowScroll: control show the scroll bar or not
+#### Radiogroup
+* OnSelectItem: add handler function when child item selected

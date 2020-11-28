@@ -73,7 +73,7 @@ func (c *RadioGroup) AddItem(r *Radio) {
 	r.SetGroup(c)
 }
 
-// OnSelectItem add a handler when child iter selected
+// OnSelectItem add handler function when child item selected
 func (c *RadioGroup) OnSelectItem(fn func(selectedRadio *Radio)) {
 	c.onSelectItem = fn
 }
